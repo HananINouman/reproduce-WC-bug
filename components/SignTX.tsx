@@ -1,5 +1,5 @@
 import { useAccount, useConfig } from "wagmi";
-import { postTermsAndConditionsAcceptance } from "../utils";
+import { signCall } from "../utils";
 
 
 const SignTX = () => {
@@ -9,8 +9,7 @@ const SignTX = () => {
 
     const handleAccept = async () => {
         try {
-            console.log("hereee")
-            await postTermsAndConditionsAcceptance(connectedAddress, config);
+            await signCall(connectedAddress, config);
 
         } catch (e) {
             console.log(e, "postTermsAndConditionsAcceptance eeeee")
@@ -20,7 +19,6 @@ const SignTX = () => {
     if (!connectedAddress) return null
 
     return <button
-        color="primary"
         type="submit"
         onClick={handleAccept}
     >

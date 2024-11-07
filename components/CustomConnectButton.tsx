@@ -9,7 +9,6 @@ const CustomConnectButton = () => {
     const { address: connectedAddress, chain } = useAccount();
     const { disconnect } = useDisconnect();
 
-    // If connected wallet but wrong network disconnect
     useEffect(() => {
         if (connectedAddress && !chain) {
             disconnect();
@@ -29,19 +28,8 @@ const CustomConnectButton = () => {
             }) => {
                 return (
                     <div
-                        style={{ width: "inherit" }}
-                        {...(!mounted && {
-                            "aria-hidden": true,
-                            style: {
-                                opacity: 0,
-                                pointerEvents: "none",
-                                userSelect: "none",
-                            },
-                        })}
                     >
                         <button
-                            id="connectButton"
-                            data-test-id="connect-web3-wallet"
                             color={mounted && account && chain ? "secondary" : "primary"}
                             onClick={() => {
                                 console.log(mounted, "mounted", account, "account", chain, "chain")
@@ -52,7 +40,6 @@ const CustomConnectButton = () => {
                                         : openAccountModal()
                                     : openConnectModal()
                             }}
-                            data-state={!account?.address && "open"}
                         >
                             {mounted && account && chain ? (
 

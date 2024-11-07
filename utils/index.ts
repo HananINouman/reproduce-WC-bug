@@ -1,26 +1,24 @@
-import { acceptTermsandConditions } from "../api";
 import { signTypedData } from "@wagmi/core";
 
 export const EIP712_DOMAIN_NAME = "Obol";
 export const EIP712_DOMAIN_VERSION = "1";
 
-export const TermsAndConditionsSigningTypes = {
+export const SigningTypes = {
     EIP712Domain: [
       { name: "name", type: "string" },
       { name: "version", type: "string" },
     ],
-    TermsAndConditions: [
-      { name: "terms_and_conditions_hash", type: "string" },
-      { name: "version", type: "uint256" },
+    Anything: [
+      { name: "hash", type: "string" },
     ],
   };
 
- const getTermsAndConditionsMessage = (
+ const getMessage = (
     payload: Partial<any>,
     addressAccount: any,
   ): any => ({
-    types: TermsAndConditionsSigningTypes,
-    primaryType: "TermsAndConditions",
+    types: SigningTypes,
+    primaryType: "Anything",
     domain: {
       name: EIP712_DOMAIN_NAME,
       version: EIP712_DOMAIN_VERSION,
@@ -31,17 +29,16 @@ export const TermsAndConditionsSigningTypes = {
 
 
 
-const signLatestTermsAndConditions = async (
+const signHash = async (
     addressAccount: any,
-    termsAndConditionsHash: string,
+    hash: string,
     config: any
 ): Promise<any> => {
     try{
         const payload = {
-            terms_and_conditions_hash: termsAndConditionsHash,
-            version: 1,
+            hash: hash
         };
-        const data = getTermsAndConditionsMessage(payload, addressAccount);
+        const data = getMessage(payload, addressAccount);
 
         const result = await signTypedData(config, data);
 
@@ -54,31 +51,22 @@ const signLatestTermsAndConditions = async (
 };
 
 
-export const postTermsAndConditionsAcceptance = async (
+export const signCall = async (
     addressAccount: any,
     config: any
 ): Promise<boolean> => {
     try{
-        const termsAndConditionsHash = "anything";
+        const hash = "anything";
 
-        const termsAndConditionsSignature = await signLatestTermsAndConditions(
+        const signature = await signHash(
             addressAccount,
-            termsAndConditionsHash,
+            hash,
             config
         );
-        const termsAndConditionsPayload = {
-            address: addressAccount,
-            version: 1,
-            terms_and_conditions_hash: termsAndConditionsHash,
-        };
-        await acceptTermsandConditions({
-            token: termsAndConditionsSignature,
-            data: termsAndConditionsPayload,
-        });
     
-        return true;
+        return signature;
     }catch(e){
-        console.log(e,"acceptTermsandConditions eeeeeeeeee")
+        console.log(e," eeeeeeeeee")
         throw e
     }
 

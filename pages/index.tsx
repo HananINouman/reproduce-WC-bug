@@ -1,12 +1,12 @@
 import CustomConnectButton from "../components/CustomConnectButton";
-import SignTX from "../components/SignTX";
+import RedirectAnchor from "../components/RedirectAnchor";
 
 
 export default function Home() {
   return (
-    <>
-     < CustomConnectButton/>
-     <SignTX/>
-    </>
+    <div style={{  display:"flex", flexDirection:"column", gap:"5px"}}>
+      < CustomConnectButton />
+      <RedirectAnchor />
+    </div>
   );
 }
