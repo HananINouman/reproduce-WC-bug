@@ -1,4 +1,4 @@
-import { acceptTermsandConditions } from "@/api";
+import { acceptTermsandConditions } from "../api";
 import { signTypedData } from "@wagmi/core";
 
 export const EIP712_DOMAIN_NAME = "Obol";

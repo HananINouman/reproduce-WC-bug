@@ -1,0 +1,7 @@
+export enum NETWORK {
+    MAINNET = 1,
+    LOCALHOST = 31337,
+    SEPOLIA = 11155111,
+    HOLESKY = 17000,
+    GNOSIS = 100,
+} export const SPLITS_API_KEY = process.env.NEXT_PUBLIC_SPLITS_API_KEY;

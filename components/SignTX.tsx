@@ -1,5 +1,5 @@
 import { useAccount, useConfig } from "wagmi";
-import { postTermsAndConditionsAcceptance } from "@/utils";
+import { postTermsAndConditionsAcceptance } from "../utils";
 
 
 const SignTX = () => {

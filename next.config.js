@@ -1,8 +1,15 @@
 /** @type {import('next').NextConfig} */
 
 
-const env = {};
+const existingEnvVars = Object.keys(process.env);
 
+// Load the environment variables only if they are not already defined
+require("dotenv-flow").config({
+  node_env: process.env.APP_ENV || "mainnet",
+  silent: existingEnvVars.length > 0,
+});
+
+const env = {};
 
 const nextConfig = {
   webpack: (config, { isServer }) => {

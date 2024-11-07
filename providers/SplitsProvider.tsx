@@ -1,16 +1,22 @@
 import { mainnet, sepolia, holesky, gnosis } from "viem/chains";
 import { SplitsClientConfig, SplitsProvider } from "@0xsplits/splits-sdk-react";
 import { ReactNode } from "react";
+import { SPLITS_API_KEY , NETWORK} from "../constants/index";
 import { usePublicClient } from "wagmi";
 
-const SPLITS_API_KEY="e8a790a8c1a6cd14c370c222"
+export const chains = {
+  [NETWORK.MAINNET]: mainnet,
+  [NETWORK.SEPOLIA]: sepolia,
+  [NETWORK.HOLESKY]: holesky,
+  [NETWORK.GNOSIS]: gnosis,
+};
 
 
 export const Provider = (props: { children: ReactNode }) => {
   const publicClient = usePublicClient();
   
   const splitsConfig: SplitsClientConfig = {
-    chainId:1,
+    chainId: Number(process.env.NEXT_PUBLIC_CHAIN_ID),
     publicClient,
     apiConfig: {
       apiKey: SPLITS_API_KEY,

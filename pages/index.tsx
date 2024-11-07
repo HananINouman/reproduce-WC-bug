@@ -1,5 +1,5 @@
-import CustomConnectButton from "@/components/CustomConnectButton";
-import SignTX from "@/components/SignTX";
+import CustomConnectButton from "../components/CustomConnectButton";
+import SignTX from "../components/SignTX";
 
 
 export default function Home() {
