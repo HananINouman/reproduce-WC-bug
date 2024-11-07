@@ -54,7 +54,7 @@ const signHash = async (
 export const signCall = async (
     addressAccount: any,
     config: any
-): Promise<boolean> => {
+): Promise<string> => {
     try{
         const hash = "anything";
 

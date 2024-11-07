@@ -1,4 +1,5 @@
 "use client";
+import CustomConnectButton from "@components/CustomConnectButton";
 import { useHasMounted } from "../hooks";
 import WagmiProvider from "../providers/WagmiProvider";
 import "../styles/globals.css";
@@ -12,6 +13,8 @@ export default function App({ Component, pageProps }: AppProps) {
     return null;
   }
   return <WagmiProvider>
+    < CustomConnectButton />
+
     <Component {...pageProps} />
   </WagmiProvider>;
 }
